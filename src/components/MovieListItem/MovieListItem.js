@@ -1,16 +1,9 @@
-import React, {Component} from "react"
+import React from "react"
 
-class MovieListItem extends Component {
-  constructor({title}){
-    super()
-    this.state = { title: title }
-  }
-
-  render = () => {
-    return (
-      <li> { this.state.title } </li>  
-    )
-  }
+function MovieListItem({id, title, onClick}) {
+  return (
+    <li onClick={ () => onClick(id)}> { title } </li>  
+  )
 }
 
 export default MovieListItem
