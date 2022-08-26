@@ -1,6 +1,6 @@
 import React from "react"
 
-const MovieCard = ({ id, title, poster, handleClick, averageRating}) => {
+const MovieCard = ({ id, title, poster, handleMovieCardClick, averageRating}) => {
     const movieCardStyles ={
         width: "20%"
     }
@@ -11,10 +11,10 @@ const MovieCard = ({ id, title, poster, handleClick, averageRating}) => {
     
     return (
         <div style={movieCardStyles} className="movie-card">
-            <img style={imgStyle} src={poster} alt="{title} movie poster"/>
+            <img style={imgStyle} src={poster} alt={title + ' movie poster'}/>
             <h3>{title}</h3>
             <p> Rating: {Math.round(averageRating)}/10 </p>
-            <button onClick={() => handleClick(id)}>Movie Details</button>
+            <button onClick={() => handleMovieCardClick(id)}>Movie Details</button>
         </div>
     )
 }

@@ -8,7 +8,7 @@ class App extends Component {
     this.state={
       loading: false,  
       movies: [],
-      movieClicked: undefined
+      movieClickedID: undefined
     }
   }
 
@@ -25,7 +25,7 @@ class App extends Component {
       })
   }
 
-  handleClick = (id) => {
+  handleMovieCardClick = (id) => {
     this.setState({
       movieClicked: id
     })
@@ -45,7 +45,7 @@ class App extends Component {
           (!this.state.movieClicked &&
            <CardContainer 
              allMovies={this.state.movies}
-             handleClick={this.handleClick}
+             handleMovieCardClick={this.handleMovieCardClick}
            />
          )
         }

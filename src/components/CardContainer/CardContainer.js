@@ -1,7 +1,7 @@
 import React from "react"
 import MovieCard from "../MovieCard/MovieCard"
 
-const CardContainer = ({allMovies, handleClick}) => {
+const CardContainer = ({allMovies, handleMovieCardClick}) => {
     const movieCardContainerStyles = {
         display: "flex",
 	    flexDirection: "row",
@@ -19,7 +19,7 @@ const CardContainer = ({allMovies, handleClick}) => {
                 title={movie.title}
                 poster={movie.poster_path}
                 averageRating={movie.average_rating}
-                handleClick={handleClick}
+                handleMovieCardClick={handleMovieCardClick}
         /> 
         )
     })
