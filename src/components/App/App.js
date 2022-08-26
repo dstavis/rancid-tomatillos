@@ -1,25 +1,64 @@
-import logo from '../../assets/logo.svg';
+import React, { Component } from 'react';
 import './App.css';
+import CardContainer from "../CardContainer/CardContainer"
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  constructor() {
+    super()
+    this.state={
+      loading: false,  
+      movies: [],
+      movieClicked: undefined
+    }
+  }
+
+  componentDidMount() {
+    this.setState({loading: true})
+    fetch("https://rancid-tomatillos.herokuapp.com/api/v2/movies")
+      .then(response => response.json())
+      .then(response => {
+        const movieData = response.movies
+        this.setState({
+          loading: false,
+          movies: movieData
+        })
+      })
+  }
+
+  handleClick = (id) => {
+    this.setState({
+      movieClicked: id
+    })
+  }
+
+  closeMovieDetails = () => {
+    this.setState({
+      movieClicked: undefined
+    })
+  }
+
+  render() {
+    return (
+      <main className="App">
+        <h1>Rancid Tomatillos</h1>
+        {this.state.loading ? <h1>Loading... </h1> :
+          (!this.state.movieClicked &&
+           <CardContainer 
+             allMovies={this.state.movies}
+             handleClick={this.handleClick}
+           />
+         )
+        }
+        {/* {this.state.movieClicked && 
+        <MovieDetails 
+          id={this.state.movieClicked}
+          closeMovieDetails={this.closeMovieDetails}
+        />
+        } */}
+      </main>
+    )
+  }
+
 }
 
 export default App;
