@@ -1,3 +1,9 @@
+header {
+  background-color: #3b726d;
+  height: 5vh;
+  width: 100vw;
+}
+
 .App {
   text-align: center;
 }

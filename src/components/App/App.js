@@ -3,9 +3,10 @@ import './App.css';
 
 function App() {
   return (
-    <div className="App">
+    <main className="App">
+      <header></header>
       <MovieDetail id={337401} />
-    </div>
+    </main>
   );
 }
 
