@@ -1,3 +1,4 @@
+import MovieDetail from "../MovieDetail/MovieDetail"
 import React, { Component } from 'react';
 import './App.css';
 import CardContainer from "../CardContainer/CardContainer"
@@ -27,38 +28,39 @@ class App extends Component {
 
   handleMovieCardClick = (id) => {
     this.setState({
-      movieClicked: id
+      movieClickedID: id
     })
   }
 
   closeMovieDetails = () => {
     this.setState({
-      movieClicked: undefined
+      movieClickedID: undefined
     })
   }
 
   render() {
     return (
       <main className="App">
-        <h1>Rancid Tomatillos</h1>
+        <header>
+          <h1>Rancid Tomatillos</h1>
+        </header>
         {this.state.loading ? <h1>Loading... </h1> :
-          (!this.state.movieClicked &&
+          (!this.state.movieClickedID &&
            <CardContainer 
              allMovies={this.state.movies}
              handleMovieCardClick={this.handleMovieCardClick}
            />
          )
         }
-        {/* {this.state.movieClicked && 
-        <MovieDetails 
-          id={this.state.movieClicked}
-          closeMovieDetails={this.closeMovieDetails}
-        />
-        } */}
+        { this.state.movieClickedID && 
+          <MovieDetail
+            id={this.state.movieClickedID}
+            closeMovieDetails={this.closeMovieDetails}
+          />
+        } 
       </main>
     )
   }
-
 }
 
 export default App;
