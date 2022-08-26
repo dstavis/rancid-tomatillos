@@ -33,6 +33,9 @@ class MovieDetail extends Component {
 
     return (
       <div className="movie-container">
+        <div>
+          <a href="/" onClick={this.props.closeMovieDetails}><h2>All Movies</h2></a>
+        </div>
         <section className="movie-detail">
           { movie && (
             <div className="movie-header">
