@@ -4,6 +4,11 @@ header {
   width: 100vw;
 }
 
+main {
+  color: white;
+  background-color: #1a4453;
+}
+
 .App {
   text-align: center;
 }
