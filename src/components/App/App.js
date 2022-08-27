@@ -53,7 +53,7 @@ class App extends Component {
     return (
       <main className="App">
         <header>
-          <h1>Rancid Tomatillos</h1>
+          <h1>Rancid</h1>
         </header>
         {this.state.error && <h2>{this.state.error}</h2>}
         {this.state.loading ? <h1>Loading... </h1> :

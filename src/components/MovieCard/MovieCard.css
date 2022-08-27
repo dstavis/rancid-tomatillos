@@ -1,0 +1,3 @@
+.overlay:hover {
+  filter: opacity(100%) !important;
+}

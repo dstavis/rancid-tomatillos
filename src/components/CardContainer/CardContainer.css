@@ -1,4 +1,6 @@
-/* .movie-card-container {
-    color: white;
-    background-color: #1a4453;
-  } */
+.movie-card-container {
+    /* color: white;
+    background-color: #1a4453; */
+
+    height: 100%;
+  }

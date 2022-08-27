@@ -2,11 +2,15 @@ header {
   background-color: #3b726d;
   height: 5vh;
   width: 100vw;
+  font-family: 'Nosifer', cursive;
+  padding-bottom: 15px;
+  padding-top: 10px;
 }
 
 main {
   color: white;
   background-color: #1a4453;
+  min-height: 100vh;
 }
 
 .App {
