@@ -4,11 +4,12 @@ import "./MovieCard.css"
 const MovieCard = ({ id, title, poster, handleMovieCardClick, averageRating}) => {
 
     const movieCardStyles = {
-      height: "450px",
+      
+      aspectRatio: "1/1.5",
       width: "20%",
     }
       
-    const imgStyle = {
+    const bgStyle = {
       backgroundImage: `url("`+poster+`")`,
       background: "border-box contain no-repeat",
       backgroundSize: "100% 100%",
@@ -34,21 +35,20 @@ const MovieCard = ({ id, title, poster, handleMovieCardClick, averageRating}) =>
       flexDirection: "column",
       justifyContent: "space-evenly",
       alignItems: "center",
-      backgroundColor: "rgba(117, 190, 218, 0.5)",
+      backgroundColor: "rgba(0, 0, 0, 0.55)",
       filter: "opacity(0%)",
       transition: "filter 0.5s ease-out"
     }
     
     return (
-        <div style={movieCardStyles} className="movie-card">
-            <div style={imgStyle} >
+        <div style={movieCardStyles} onClick={() => handleMovieCardClick(id)} className="movie-card">
+            <div style={bgStyle} >
               <div style={overlayStyle} className="overlay">
-                <h3>{title}</h3>
-                <p> Rating: {Math.round(averageRating)}/10 </p>
-                <button style={buttonStyle} onClick={() => handleMovieCardClick(id)}>Movie Details</button>
+                <h1>{title}</h1>
+                <h1> Rating: {Math.round(averageRating)}/10 </h1>
+                {/* <button style={buttonStyle} onClick={() => handleMovieCardClick(id)}>Movie Details</button> */}
               </div>
             </div>
-            {/* <img style={imgStyle} src={poster} alt={title + ' movie poster'}/> */}
         </div>
     )
 }

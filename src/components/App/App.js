@@ -1,53 +1,56 @@
-import MovieDetail from "../MovieDetail/MovieDetail"
-import React, { Component } from 'react';
-import './App.css';
-import CardContainer from "../CardContainer/CardContainer"
+import MovieDetail from "../MovieDetail/MovieDetail";
+import React, { Component } from "react";
+import "./App.css";
+import CardContainer from "../CardContainer/CardContainer";
 
 class App extends Component {
   constructor() {
-    super()
-    this.state={
-      loading: false,  
+    super();
+    this.state = {
+      loading: false,
       movies: [],
       movieClickedID: undefined,
-      error: undefined
-    }
+      error: undefined,
+    };
   }
 
   componentDidMount() {
-    this.setState({loading: true})
+    console.log("MOUNTED")
+    this.setState({ loading: true });
     fetch("https://rancid-tomatillos.herokuapp.com/api/v2/movies")
-      .then(response => {
-        if(!response.ok) {
-          throw new Error(response.statusText)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(response.statusText);
         } else {
-       return response.json()}})
-      .then(response => {
-        const movieData = response.movies
+          return response.json();
+        }
+      })
+      .then((response) => {
+        const movieData = response.movies;
         this.setState({
           loading: false,
-          movies: movieData
-        })
+          movies: movieData,
+        });
       })
-      .catch(err => {
+      .catch((err) => {
         this.setState({
           error: err + ".    Bad data from server. Refresh or try again later",
-          loading: false
-        })
-      })
+          loading: false,
+        });
+      });
   }
 
   handleMovieCardClick = (id) => {
     this.setState({
-      movieClickedID: id
-    })
-  }
+      movieClickedID: id,
+    });
+  };
 
   closeMovieDetails = () => {
     this.setState({
-      movieClickedID: undefined
-    })
-  }
+      movieClickedID: undefined,
+    });
+  };
 
   render() {
     return (
@@ -56,23 +59,25 @@ class App extends Component {
           <h1>Rancid</h1>
         </header>
         {this.state.error && <h2>{this.state.error}</h2>}
-        {this.state.loading ? <h1>Loading... </h1> :
-          (!this.state.movieClickedID &&
-           <CardContainer 
-             allMovies={this.state.movies}
-             handleMovieCardClick={this.handleMovieCardClick}
-           />
-         )
-        }
+        {this.state.loading ? (
+          <h1>Loading... </h1>
+        ) : (
+          !this.state.movieClickedID && (
+            <CardContainer
+              allMovies={this.state.movies}
+              handleMovieCardClick={this.handleMovieCardClick}
+            />
+          )
+        )}
 
-        {this.state.movieClickedID && 
+        {this.state.movieClickedID && (
           <MovieDetail
             id={this.state.movieClickedID}
             closeMovieDetails={this.closeMovieDetails}
           />
-        } 
+        )}
       </main>
-    )
+    );
   }
 }
 
