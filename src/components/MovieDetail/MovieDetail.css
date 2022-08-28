@@ -1,3 +1,8 @@
+.all-movies:hover {
+  cursor:pointer;
+  text-decoration: underline;
+}
+
 .movie-container {
   display: flex;
   flex-direction: row;
