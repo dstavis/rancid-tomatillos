@@ -2,7 +2,9 @@ import React from "react"
 import "./CardContainer.css"
 import MovieCard from "../MovieCard/MovieCard"
 
-const CardContainer = ({allMovies, handleMovieCardClick}) => {
+
+const CardContainer = ({allMovies, history}) => {
+
     const movieCardContainerStyles = {
         display: "flex",
 	    flexDirection: "row",
@@ -14,14 +16,16 @@ const CardContainer = ({allMovies, handleMovieCardClick}) => {
 
     const movieCards = allMovies.map(movie => {
         return (
-            <MovieCard 
+            // <NavLink to={`/movie_details/${movie.id}`}  >
+             <MovieCard 
                 key={movie.id}
                 id={movie.id}
                 title={movie.title}
                 poster={movie.poster_path}
                 averageRating={movie.average_rating}
-                handleMovieCardClick={handleMovieCardClick}
-             /> 
+                history={history}
+                 /> 
+            
         )
     })
 

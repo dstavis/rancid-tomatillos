@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import "./MovieDetail.css";
+
 import GenreBubble from "./GenreBubble/GenreBubble.js"
 
 const urlBody = "https://rancid-tomatillos.herokuapp.com/api/v2/movies/";
 class MovieDetail extends Component {
   constructor(props) {
-    const { id } = props;
+    const { id, history } = props;
     super(props);
 
     this.state = {
@@ -50,7 +51,7 @@ class MovieDetail extends Component {
       return (
         <div className="movie-container">
           <div>
-            <h2 onClick={this.props.closeMovieDetails} className="all-movies">All Movies</h2>
+            <h2 onClick={(() => this.props.history.push(`/`))} className="all-movies">All Movies</h2>
           </div>
           <section className="movie-detail">
             
