@@ -1,7 +1,7 @@
 import MovieDetail from "../MovieDetail/MovieDetail";
 import ErrorPage from "../ErrorPage";
 import React, { Component } from "react";
-import { Route, Link } from "react-router-dom"
+import { Route, Link, Redirect } from "react-router-dom"
 import "./App.css";
 import CardContainer from "../CardContainer/CardContainer";
 
@@ -37,6 +37,7 @@ class App extends Component {
           error: err + ". Bad data from server. Refresh or try again later",
           loading: false,
         });
+
       });
   }
 
@@ -48,17 +49,20 @@ class App extends Component {
           <h1>Rancid</h1>
         </Link>
         </header>
-        <Route exact path="/" render={({history}) => 
-
+        <Route exact path="/" render={({history}) => {
+          return  this.state.error ? <Redirect to="/error" /> 
+          : this.state.loading ? <h1>Loading... </h1> :
          <CardContainer 
           allMovies={this.state.movies}
           history={history}
-          />} />
+          />} 
+         }
+        /> 
 
-          <Route exact path="/movie_details/:id" render={({match, history}) => 
-            <MovieDetail 
-              id={match.params.id}
-              history={history}
+        <Route exact path="/movie_details/:id" render={({match, history}) => 
+          <MovieDetail 
+            id={match.params.id}
+            history={history}
           />} 
         />
 
@@ -67,70 +71,10 @@ class App extends Component {
                 message={this.state.error}
           />} 
         />
+        
       </main>
      );
   }
 }
-
-
-      {/* <Route 
-          exact path ="/:movieId"
-            render={({match}) => {
-              const movieToRender = puppies.find(creature => creature.id === parseInt(match.params.id));
-              return <CreatureDetails {...creatureToRender} />
-            }}
-        />     */}
-
-      {/* {this.state.error && <h2>{this.state.error}</h2>}
-      {this.state.loading ? (
-        <h1>Loading... </h1>
-      ) : (
-        !this.state.movieClickedID && (
-          <CardContainer
-            allMovies={this.state.movies}
-            handleMovieCardClick={this.handleMovieCardClick}
-          />
-        )
-      )} */}
-
-      {/* {this.state.movieClickedID && (
-        <MovieDetail
-          id={this.state.movieClickedID}
-          closeMovieDetails={this.closeMovieDetails}
-        />
-      )} */}
-
-
-
-
-      // <main className="App">
-      //   <header>
-      //     <h1>Rancid</h1>
-      //   </header>
-      //   {this.state.error && <h2>{this.state.error}</h2>}
-      //   {this.state.loading ? (
-      //     <h1>Loading... </h1>
-      //   ) : (
-      //     !this.state.movieClickedID && (
-      //       <CardContainer
-      //         allMovies={this.state.movies}
-      //         handleMovieCardClick={this.handleMovieCardClick}
-      //       />
-      //     )
-      //   )}
-
-      //   {this.state.movieClickedID && (
-      //     <MovieDetail
-      //       id={this.state.movieClickedID}
-      //       closeMovieDetails={this.closeMovieDetails}
-      //     />
-      //   )}
-      // </main>
-
-// function Home() {
-//   return (
-    
-//   )
-// }
 
 export default App;
