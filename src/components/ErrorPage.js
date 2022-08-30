@@ -6,7 +6,6 @@ const ErrorPage = (props) => {
     return (
         <h2>{message}</h2>
     )
-    
 }
 
 export default ErrorPage
