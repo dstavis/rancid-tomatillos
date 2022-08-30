@@ -1,14 +1,12 @@
 import React from "react"
 import "./MovieCard.css"
 
-const MovieCard = ({ id, title, poster, handleMovieCardClick, averageRating}) => {
-
+const MovieCard = ({ id, title, poster, history, averageRating}) => {
     const movieCardStyles = {
-      
       aspectRatio: "1/1.5",
       width: "20%",
     }
-      
+
     const bgStyle = {
       backgroundImage: `url("`+poster+`")`,
       background: "border-box contain no-repeat",
@@ -41,12 +39,11 @@ const MovieCard = ({ id, title, poster, handleMovieCardClick, averageRating}) =>
     }
     
     return (
-        <div style={movieCardStyles} onClick={() => handleMovieCardClick(id)} className="movie-card">
+        <div style={movieCardStyles} onClick={(() => history.push(`/movie_details/${id}`))} className="movie-card">
             <div style={bgStyle} >
               <div style={overlayStyle} className="overlay">
                 <h1>{title}</h1>
                 <h1> Rating: {Math.round(averageRating)}/10 </h1>
-                {/* <button style={buttonStyle} onClick={() => handleMovieCardClick(id)}>Movie Details</button> */}
               </div>
             </div>
         </div>
