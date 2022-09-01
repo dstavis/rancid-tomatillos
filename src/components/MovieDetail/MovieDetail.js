@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import "./MovieDetail.css"
 import GenreBubble from "./GenreBubble/GenreBubble.js"
+import {  fetchData } from "../apiCalls.js"
 
 const urlBody = "https://rancid-tomatillos.herokuapp.com/api/v2/movies/";
 class MovieDetail extends Component {
   constructor(props) {
     const { id, history } = props;
     super(props);
-
     this.state = {
       id: id,
       error: undefined,
@@ -15,26 +15,19 @@ class MovieDetail extends Component {
   }
 
   componentDidMount = () => {
-    fetch(urlBody + this.state.id)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(response.statusText);
-        } else {
-          return response.json();
-        }
-      })
+    fetchData(this.state.id)
       .then((data) => {
         this.setState({
           ...this.state,
           movie: data.movie,
-        });
+        })
       })
       .catch((err) => {
         this.setState({
           error: err + ". Bad data from server. Refresh or try again later",
-        });
-      });
-  };
+        })
+      })
+    };
 
   render = () => {
     const movie = this.state.movie;
@@ -69,12 +62,12 @@ class MovieDetail extends Component {
                 <img src={movie.backdrop_path} className="backdrop" alt="movie backdrop"></img>
               </div>         
               <div className="movie-errata">
+                  <h3 className="tagline">{movie.tagline}</h3>
+                  <h4 className="overview">{movie.overview}</h4>             
                 <div className="left-column">
                   <div className="genre-bubbles">
                     {genreBubbles}
                   </div>
-                  <h3>{movie.tagline}</h3>
-                  <h4>{movie.overview}</h4>             
                     <p>Revenue: {"$" + new Intl.NumberFormat().format(movie.revenue)}</p>               
                 </div>
                 <div className="right-column">

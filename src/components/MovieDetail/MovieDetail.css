@@ -63,6 +63,22 @@
   height: 420px;
 }
 
+.genre-bubbles {
+  margin-top: 1%;
+  margin-bottom: 5px;
+}
+
+.tagline {
+  font-size:200%;
+  margin-left: 20%;
+}
+
+.overview {
+  margin-top: 5%;
+  margin-left: 20%;
+}
+
+
 img.poster{
   height: 100%;
   aspect-ratio: 1 / 1.5;
