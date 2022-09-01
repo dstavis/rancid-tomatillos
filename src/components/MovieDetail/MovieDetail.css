@@ -1,6 +1,15 @@
+.all-movies {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
 .all-movies:hover {
   cursor:pointer;
   text-decoration: underline;
+}
+
+.all-movies:active {
+  color: #e67700;
 }
 
 .movie-container {

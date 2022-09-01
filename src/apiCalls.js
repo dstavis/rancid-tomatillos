@@ -1,5 +1,7 @@
+const hostName = "https://rancid-tomatillos.herokuapp.com/api/v2/movies/"
+
 let fetchData = (id) => 
-id ? fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/movies/${id}`)
+id ? fetch(hostName + id)
 .then((response) => {
   if (!response.ok) {
     throw new Error(response.statusText);
@@ -7,7 +9,7 @@ id ? fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/movies/${id}`)
     return response.json();
 }
 }) 
-: fetch("https://rancid-tomatillos.herokuapp.com/api/v2/movies/")
+: fetch(hostName)
 .then((response) => {
   if (!response.ok) {
     throw new Error(response.statusText);
