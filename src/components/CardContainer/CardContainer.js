@@ -2,7 +2,7 @@ import React from "react"
 import "./CardContainer.css"
 import MovieCard from "../MovieCard/MovieCard"
 
-const CardContainer = ({allMovies, history}) => {
+const CardContainer = ({allMovies}) => {
     const movieCardContainerStyles = {
         display: "flex",
 	    flexDirection: "row",
@@ -20,7 +20,6 @@ const CardContainer = ({allMovies, history}) => {
             title={movie.title}
             poster={movie.poster_path}
             averageRating={movie.average_rating}
-            history={history}
            /> 
         )
     })

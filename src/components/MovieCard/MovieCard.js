@@ -1,53 +1,22 @@
 import React from "react"
+import {Link} from 'react-router-dom'
 import "./MovieCard.css"
 
-const MovieCard = ({ id, title, poster, history, averageRating}) => {
-    const movieCardStyles = {
-      aspectRatio: "1/1.5",
-      width: "20%",
-    }
+const MovieCard = ({ id, title, poster, averageRating}) => {
+  const backgroundPoster = {
+    backgroundImage: `url("`+ poster +`")`,
+  }
 
-    const bgStyle = {
-      backgroundImage: `url("`+poster+`")`,
-      background: "border-box contain no-repeat",
-      backgroundSize: "100% 100%",
-      boxSizing: "border-box",
-      height: "100%"
-    }
-
-    const buttonStyle = {
-      borderRadius: "15px",
-      height:"8%",
-      width: "80%",
-      marginTop: "3px",
-      cursor: "pointer",
-      backgroundColor: "#3b726d",
-      border:"white 2px solid",
-      color: "white",
-      fontSize: "100%"
-    }
-
-    const overlayStyle = {
-      height: "100%",
-      display: "flex",
-      flexDirection: "column",
-      justifyContent: "space-evenly",
-      alignItems: "center",
-      backgroundColor: "rgba(0, 0, 0, 0.55)",
-      filter: "opacity(0%)",
-      transition: "filter 0.5s ease-out"
-    }
-    
-    return (
-        <div style={movieCardStyles} onClick={(() => history.push(`/movie_details/${id}`))} className="movie-card">
-            <div style={bgStyle} >
-              <div style={overlayStyle} className="overlay">
-                <h1>{title}</h1>
-                <h1> Rating: {Math.round(averageRating)}/10 </h1>
-              </div>
-            </div>
+  return (
+    <Link to={"/movie_details/" + id} className="movie-card">
+        <div style={backgroundPoster} className="background-styles">
+          <div className="overlay overlay-style">
+            <h1>{title}</h1>
+            <h1> Rating: {Math.round(averageRating)}/10 </h1>
+          </div>
         </div>
-    )
+    </Link>
+)
 }
 
 export default MovieCard

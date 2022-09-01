@@ -3,7 +3,7 @@ import "./GenreBubble.css"
 
 function GenreBubble({genre}) {
   return (
-    <div className="genre-bubble">
+    <div className="genre-bubble-text">
       <p>{genre}</p>
     </div>
   )

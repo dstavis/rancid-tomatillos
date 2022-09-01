@@ -1,6 +1,15 @@
+.all-movies {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
 .all-movies:hover {
   cursor:pointer;
   text-decoration: underline;
+}
+
+.all-movies:active {
+  color: #e67700;
 }
 
 .movie-container {
@@ -62,6 +71,22 @@
 
   height: 420px;
 }
+
+.genre-bubbles {
+  margin-top: 1%;
+  margin-bottom: 5px;
+}
+
+.tagline {
+  font-size:200%;
+  margin-left: 20%;
+}
+
+.overview {
+  margin-top: 5%;
+  margin-left: 20%;
+}
+
 
 img.poster{
   height: 100%;
