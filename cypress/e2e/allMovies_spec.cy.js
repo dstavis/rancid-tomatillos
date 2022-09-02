@@ -1,30 +1,28 @@
 describe('RANCID', () => {
   beforeEach( () => {
-    cy.intercept("https://rancid-tomatillos.herokuapp.com/api/v2/movies", {statusCode: 201, body: {
-      id: 694919,
-      poster_path: "https://image.tmdb.org/t/p/original//6CoRTJTmijhBLJTUNoVSUNxZMEI.jpg",
-      backdrop_path: "https://image.tmdb.org/t/p/original//pq0JSpwyT2URytdFG0euztQPAyR.jpg",
-      title: "Money Plane",
-      average_rating: 6.875,
-      release_date: "2020-09-29"
-    }})
-    cy.visit('localhost:3000')
+    
+    cy.fixture("movies").then( (banana) => {
+      cy.intercept("GET", "https://rancid-tomatillos.herokuapp.com/api/v2/movies/", { statusCode: 201, body: banana })
+    })
+    cy.visit('http://localhost:3000/')
   })
 
   it('should load the home page', () => {
     cy.contains('h1', 'Rancid')
   })
-  
-  // it('should load all the movie cards', () => {
-  //   cy.get('div[class="movie-card]').should()
-  // })
 
-  it('should try to get movies data', () => {
-    cy.intercept("https://rancid-tomatillos.herokuapp.com/api/v2/movies", {statusCode: 201})
+  it('should load at least one movie card', () => {
+    cy.visit("localhost:3000/").get('a.movie-card')
   })
 
-  it('should try to get movies data', () => {
+  it('should load all the movie cards that it gets data for (in this case, 5)', () => {
+    cy.visit("localhost:3000/").get('a.movie-card').should('have.length', 5)
   })
 
-
+  it("should show each movie's title, rating, and poster", () => {
+    cy.visit("localhost:3000/").get('a.movie-card')
+    cy.get('h1.title').first().contains("Money Plane")
+    cy.get('h1.rating').first().contains("Rating: 7/10")
+    cy.get('div.background-style').first().should("have.css", 'background-image', `url("https://image.tmdb.org/t/p/original//6CoRTJTmijhBLJTUNoVSUNxZMEI.jpg")`)
+  })
 })
