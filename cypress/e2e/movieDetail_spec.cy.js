@@ -54,8 +54,10 @@ describe('RANCID', () => {
     cy.get('h4.overview').contains("A professional thief with $40 million in debt and his family's life on the line must commit one final heist - rob a futuristic airborne casino filled with the world's most dangerous criminals.")
     cy.get('div.genre-bubbles').contains("Action")
     cy.get('div.left-column').contains('p', '$0')
-    
+  })
 
-
+  it('should be able to return to all movies from movie details', () => {
+    cy.visit("localhost:3000/").get('a.movie-card').first().click()
+    cy.get('a.all-movies').click().url().should("not.include", "/movie_details")
   })
 })
