@@ -1,7 +1,7 @@
-const hostName = "https://rancid-tomatillos.herokuapp.com/api/v2/movies/"
+const customHost = "http://localhost:3002/movies/"
 
 let fetchData = (id) => 
-id ? fetch(hostName + id)
+id ? fetch(customHost + id)
 .then((response) => {
   if (!response.ok) {
     throw new Error(response.statusText);
@@ -9,7 +9,7 @@ id ? fetch(hostName + id)
     return response.json();
 }
 }) 
-: fetch(hostName)
+: fetch("http://localhost:3002/movies")
 .then((response) => {
   if (!response.ok) {
     throw new Error(response.statusText);
