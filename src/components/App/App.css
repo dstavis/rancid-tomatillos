@@ -9,6 +9,13 @@ header {
 
 .logo-header {
   color:white !important;
+  display: inline-block;
+}
+
+.logo-header-genre {
+  color: #e67700 !important;
+  display: inline-block;
+  margin-left: 1%;
 }
 
 .logo-header:hover {

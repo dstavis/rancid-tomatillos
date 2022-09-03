@@ -11,17 +11,18 @@ class App extends Component {
     super();
     this.state = {
       movies: [],
-      error: null,
+      error: null
     };
   }
 
   componentDidMount() {
-    this.setState({ loading: true });
+    console.log("mounted APP")
+   
     fetchData()
       .then((response) => {
         const movieData = response.movies;
         this.setState({
-          movies: movieData,
+          movies: movieData
         })
       })
       .catch((err) => {
@@ -38,15 +39,33 @@ class App extends Component {
         <Link to="/">
           <h1 className="logo-header">Rancid</h1>
         </Link>
+          <Route exact path="/movies_by_genre/:genre" render={({match}) => {
+            const selectedGenre = match.params.genre
+            return <h1 className="logo-header-genre">  > {  selectedGenre} Movies</h1>
+          }}  />
         </header>
         <Route exact path="/" render={() => {
+          console.log("going home", this.state.movies)
           return  this.state.error ? <Redirect to="/error" /> 
           : !this.state.movies.length ? <h1>Loading... </h1> :
          <CardContainer 
-          allMovies={this.state.movies}
+          movies={this.state.movies}
           />} 
          }
         /> 
+
+        <Route exact path="/movies_by_genre/:genre" render={({match}) => {
+           const filterGenres =  this.state.movies.filter(movie => {
+             return movie.genres.includes(match.params.genre)
+            })
+
+          return this.state.error ? <Redirect to="/error" /> 
+          : !this.state.movies.length ? <h1>Loading... </h1> :
+           <CardContainer 
+              movies={filterGenres}
+            />
+           }}
+        />
 
         <Route exact path="/movie_details/:id" render={({match}) => 
           <MovieDetail 
@@ -57,9 +76,9 @@ class App extends Component {
         <Route exact path="/error" render={() => 
             <ErrorPage 
                 message={this.state.error}
-          />} 
-        />
-        
+            />
+          } 
+        />  
       </main>
      );
   }

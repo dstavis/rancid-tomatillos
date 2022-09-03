@@ -2,7 +2,7 @@ import React from "react"
 import "./CardContainer.css"
 import MovieCard from "../MovieCard/MovieCard"
 
-const CardContainer = ({allMovies}) => {
+const CardContainer = ({movies}) => {
     const movieCardContainerStyles = {
         display: "flex",
 	    flexDirection: "row",
@@ -12,7 +12,7 @@ const CardContainer = ({allMovies}) => {
 	    alignContent: "stretch"
     }
 
-    const movieCards = allMovies.map(movie => {
+    const movieCards = movies.map(movie => {
         return (
           <MovieCard 
             key={movie.id}

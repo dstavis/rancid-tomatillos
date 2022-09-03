@@ -3,6 +3,7 @@ import {Link, Redirect} from "react-router-dom"
 import "./MovieDetail.css"
 import GenreBubble from "./GenreBubble/GenreBubble.js"
 import { fetchData } from "../../apiCalls.js"
+
 class MovieDetail extends Component {
   constructor(props) {
     const { id } = props;
@@ -14,6 +15,8 @@ class MovieDetail extends Component {
   }
 
   componentDidMount = () => {
+
+    console.log("MOUNTED movie details")
     fetchData(this.state.id)
       .then((data) => {
         this.setState({
@@ -27,6 +30,10 @@ class MovieDetail extends Component {
         })
       })
     };
+
+    componentWillUnmount() {
+      console.log("UNMOUNTed movie details")
+    }
 
   render = () => {
     const movie = this.state.movie;
