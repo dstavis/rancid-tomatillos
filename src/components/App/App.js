@@ -16,8 +16,6 @@ class App extends Component {
   }
 
   componentDidMount() {
-    console.log("mounted APP")
-   
     fetchData()
       .then((response) => {
         const movieData = response.movies;
@@ -29,56 +27,50 @@ class App extends Component {
         this.setState({
           error: err + ". Bad data from server. Refresh or try again later",
         })
-    })
+      })
   }
 
   render() {
     return (
       <main className="App">
-       <header>
-        <Link to="/">
-          <h1 className="logo-header">Rancid</h1>
-        </Link>
-          <Route exact path="/movies_by_genre/:genre" render={({match}) => {
-            const selectedGenre = match.params.genre
-            return <h1 className="logo-header-genre">  > {  selectedGenre} Movies</h1>
-          }}  />
+        <header>
+          <Link to="/">
+            <h1 className="logo-header">Rancid</h1>
+          </Link>
+            <Route exact path="/movies_by_genre/:genre" render={({match}) => {
+              const selectedGenre = match.params.genre
+              return <h1 className="logo-header-genre">  > {selectedGenre} Movies</h1>
+            }
+          } />
         </header>
         <Route exact path="/" render={() => {
-          console.log("going home", this.state.movies)
           return  this.state.error ? <Redirect to="/error" /> 
           : !this.state.movies.length ? <h1>Loading... </h1> :
          <CardContainer 
           movies={this.state.movies}
           />} 
-         }
-        /> 
-
+        } /> 
         <Route exact path="/movies_by_genre/:genre" render={({match}) => {
-           const filterGenres =  this.state.movies.filter(movie => {
-             return movie.genres.includes(match.params.genre)
-            })
-
+          const filterGenres =  this.state.movies.filter(movie => {
+            return movie.genres.includes(match.params.genre)
+          })
           return this.state.error ? <Redirect to="/error" /> 
           : !this.state.movies.length ? <h1>Loading... </h1> :
-           <CardContainer 
-              movies={filterGenres}
-            />
-           }}
-        />
-
+          <CardContainer 
+            movies={filterGenres}
+          />
+          }
+        } />
         <Route exact path="/movie_details/:id" render={({match}) => 
           <MovieDetail 
             id={match.params.id}
-          />} 
-        />
-
+          />
+        } />
         <Route exact path="/error" render={() => 
-            <ErrorPage 
-                message={this.state.error}
-            />
-          } 
-        />  
+          <ErrorPage 
+              message={this.state.error}
+          />
+        } />  
       </main>
      );
   }

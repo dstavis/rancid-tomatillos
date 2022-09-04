@@ -6,11 +6,6 @@ const MovieCard = ({ id, title, poster, averageRating}) => {
   const backgroundPoster = {
     backgroundImage: `url("`+ poster +`")`,
   }
-
-
- 
-
-
   return (
     <Link to={"/movie_details/" + id} className="movie-card">
         <div style={backgroundPoster} className="background-style">
@@ -20,7 +15,7 @@ const MovieCard = ({ id, title, poster, averageRating}) => {
           </div>
         </div>
     </Link>
-)
+  )
 }
 
 export default MovieCard

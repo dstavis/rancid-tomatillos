@@ -15,8 +15,6 @@ class MovieDetail extends Component {
   }
 
   componentDidMount = () => {
-
-    console.log("MOUNTED movie details")
     fetchData(this.state.id)
       .then((data) => {
         this.setState({
@@ -29,24 +27,17 @@ class MovieDetail extends Component {
           error: err + ". Bad data from server. Refresh or try again later",
         })
       })
-    };
-
-    componentWillUnmount() {
-      console.log("UNMOUNTed movie details")
-    }
+  };
 
   render = () => {
     const movie = this.state.movie;
     if(this.state.error) {
       return (<Redirect to="/error" />)
-    } else if (movie) {
-      let genreBubbles;
-      genreBubbles = movie.genres.map( 
-        (genre) => {
-          return <GenreBubble genre={genre} />
-        } )
-
-      return (
+    } else if(movie) {
+      let genreBubbles = movie.genres.map(genre => {
+        return <GenreBubble genre={genre} />
+      })
+      return(
         <div className="movie-container">
           <div>
             <Link to="/" className="all-movies">All Movies</Link>

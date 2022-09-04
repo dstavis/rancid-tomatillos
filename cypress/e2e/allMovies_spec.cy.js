@@ -1,8 +1,7 @@
 describe('RANCID', () => {
   beforeEach( () => {
-    
-    cy.fixture("movies").then( (banana) => {
-      cy.intercept("GET", "https://rancid-tomatillos.herokuapp.com/api/v2/movies/", { statusCode: 201, body: banana })
+    cy.fixture("movies").then((data) => {
+      cy.intercept("GET", "https://rancid-tomatillos.herokuapp.com/api/v2/movies/", { statusCode: 201, body: data })
     })
     cy.visit('http://localhost:3000/')
   })

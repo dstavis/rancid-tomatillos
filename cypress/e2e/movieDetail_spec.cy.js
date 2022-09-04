@@ -1,5 +1,3 @@
-// look into fixtures; but sample data in a fixture and import it into the test so that the intercept can use it
-
 const exampleMovieJSON = {
   "movie": {
   "id": 694919,
@@ -21,8 +19,7 @@ const exampleMovieJSON = {
 
 describe('RANCID', () => {
   beforeEach( () => {
-    cy.intercept("https://rancid-tomatillos.herokuapp.com/api/v2/movies/694919", {statusCode: 201, body: exampleMovieJSON
-  })
+    cy.intercept("https://rancid-tomatillos.herokuapp.com/api/v2/movies/694919", {statusCode: 201, body: exampleMovieJSON})
   })
 
   it('should have a link to all movies', () => {
@@ -42,7 +39,6 @@ describe('RANCID', () => {
     cy.visit("localhost:3000").get('a[class="movie-card"]').first().click().url().should("include", "/movie_details/694919")
   })
   
-
   it('should try to get data for one movie', () => {
     cy.visit("localhost:3000/").get('a.movie-card').first().click()
     cy.get('div.movie-title').contains("h1", "Money Plane")
