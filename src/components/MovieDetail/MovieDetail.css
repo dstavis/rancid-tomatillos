@@ -25,19 +25,15 @@
 
 .movie-container small {
   font-size: small;
-
   filter: opacity(70%);
-
   padding-top: 10px;
   padding-bottom: 10px;
 }
 
 .movie-detail {
   padding-top: 40px;
-  
   display: flex;
   flex-direction: column;
-  
   width: 70vw;
   height: 100%;
 }
@@ -45,14 +41,12 @@
 .movie-header {
   display: flex;
   flex-direction: row;
-  
   justify-content: start;
   align-items: center;
 }
 
 .movie-title {
   margin-right: auto;
-  
   display: flex;
   flex-direction: column;
   align-items: start;
@@ -68,7 +62,6 @@
   display: flex;
   flex-direction: row;
   justify-content: start;
-
   height: 420px;
 }
 
@@ -88,15 +81,12 @@
   margin-left: 20%;
 }
 
-
 img.poster{
   height: 100%;
   aspect-ratio: 1 / 1.5;
-
   margin-right: 15px;
 }
 
 img.backdrop {
-  /* width: 534px; */
   height: 100%;
 }
