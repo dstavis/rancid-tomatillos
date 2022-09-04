@@ -67,8 +67,8 @@ You will need both hosts running locally to see the fully functioning website
 - Elaborate on error handling in server and the application
 
 ## Members
-David Stavis [linkedin](https://www.linkedin.com/in/dstavis/)
-Eddie Rodriguez [linkedin](https://www.linkedin.com/in/edward-rodriguez-1b497423b/)
+- David Stavis [linkedin](https://www.linkedin.com/in/dstavis/)
+- Eddie Rodriguez [linkedin](https://www.linkedin.com/in/edward-rodriguez-1b497423b/)
 
 ## Links
 - [Project Requirements](https://frontend.turing.edu/projects/module-3/rancid-tomatillos-v3.html)
