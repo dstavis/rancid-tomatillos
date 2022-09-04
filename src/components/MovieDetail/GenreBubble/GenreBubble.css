@@ -5,11 +5,11 @@
     border: 1px solid white;
     width: 15%;
     height: 30px;
-    cursor: pointer;
+    /* cursor: pointer; */
     margin-bottom:1.5%;
     
 
 }
-.genre-bubble-text:hover {
+/* .genre-bubble-text:hover {
    background-color: grey;  
-}
+} */

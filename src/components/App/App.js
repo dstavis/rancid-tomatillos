@@ -16,7 +16,6 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.setState({ loading: true });
     fetchData()
       .then((response) => {
         const movieData = response.movies;
