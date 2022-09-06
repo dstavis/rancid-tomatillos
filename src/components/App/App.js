@@ -6,6 +6,8 @@ import "./App.css";
 import CardContainer from "../CardContainer/CardContainer";
 import { fetchData } from "../../apiCalls.js"
 
+const hostName = "/rancid-tomatillos"
+
 class App extends Component {
   constructor() {
     super();
@@ -34,11 +36,11 @@ class App extends Component {
     return (
       <main className="App">
        <header>
-        <Link to="/">
+        <Link to={hostName + "/"}>
           <h1 className="logo-header">Rancid</h1>
         </Link>
         </header>
-        <Route exact path="/" render={() => {
+        <Route exact path={hostName + "/"} render={() => {
           return  this.state.error ? <Redirect to="/error" /> 
           : !this.state.movies.length ? <h1>Loading... </h1> :
          <CardContainer 
@@ -47,13 +49,13 @@ class App extends Component {
          }
         /> 
 
-        <Route exact path="/movie_details/:id" render={({match}) => 
+        <Route exact path={hostName + "/movie_details/:id"} render={({match}) => 
           <MovieDetail 
             id={match.params.id}
           />} 
         />
 
-        <Route exact path="/error" render={() => 
+        <Route exact path={hostName + "/error"} render={() => 
             <ErrorPage 
                 message={this.state.error}
           />} 

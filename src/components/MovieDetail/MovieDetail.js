@@ -3,6 +3,8 @@ import {Link, Redirect} from "react-router-dom"
 import "./MovieDetail.css"
 import GenreBubble from "./GenreBubble/GenreBubble.js"
 import { fetchData } from "../../apiCalls.js"
+
+const hostName = "/rancid-tomatillos"
 class MovieDetail extends Component {
   constructor(props) {
     const { id } = props;
@@ -31,7 +33,7 @@ class MovieDetail extends Component {
   render = () => {
     const movie = this.state.movie;
     if(this.state.error) {
-      return (<Redirect to="/error" />)
+      return (<Redirect to={hostName + "/error"} />)
     } else if (movie) {
       let genreBubbles;
       genreBubbles = movie.genres.map( 
@@ -42,7 +44,7 @@ class MovieDetail extends Component {
       return (
         <div className="movie-container">
           <div>
-            <Link to="/" className="all-movies">All Movies</Link>
+            <Link to={hostName + "/"} className="all-movies">All Movies</Link>
           </div>
           <section className="movie-detail">
               <div className="movie-header">
